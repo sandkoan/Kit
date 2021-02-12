@@ -1,0 +1,4 @@
+package libkit
+
+class GitRepository {
+}
