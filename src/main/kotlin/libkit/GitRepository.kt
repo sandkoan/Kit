@@ -3,6 +3,7 @@ package libkit
 import com.sksamuel.hoplite.ConfigLoader
 import com.sksamuel.hoplite.PropertySource
 import java.io.File
+import java.io.ObjectInputFilter
 
 class GitRepository constructor(path: String = ".", force: Boolean = false) {
     var worktree: File? = null
@@ -15,9 +16,10 @@ class GitRepository constructor(path: String = ".", force: Boolean = false) {
         if (!force || !this.gitdir!!.isDirectory)
             Utils.fail("Not a Git repository $path")
 
-        // read config file in .git/config
-        this.conf = ConfigLoader.Builder().
-        addSource(PropertySource.file(File("$this.gitdir/config"))).build().loadConfig<>()
+        this.conf = ConfigLoader.Builder()
+            .addSource(PropertySource.resource("${this.gitdir}/config", true))
+            .build()
+            .loadConfig<Config>()
     }
 
 }
