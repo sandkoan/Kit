@@ -17,7 +17,6 @@ class GitRepository constructor(path: String = ".", force: Boolean = false) {
         this.confReader = Wini(confPath)
 
 
-
         /*
         *
         cf = repo_file(self, "config")
@@ -34,13 +33,6 @@ class GitRepository constructor(path: String = ".", force: Boolean = false) {
 
 
 
-def repo_file(repo, *path, mkdir=False):
-    """Same as repo_path, but create dirname(*path) if absent.  For
-example, repo_file(r, \"refs\", \"remotes\", \"origin\", \"HEAD\") will create
-.git/refs/remotes/origin."""
-
-    if repo_dir(repo, *path[:-1], mkdir=mkdir):
-        return repo_path(repo, *path)
 
 def repo_dir(repo, *path, mkdir=False):
     """Same as repo_path, but mkdir *path if absent if mkdir."""
@@ -64,11 +56,13 @@ def repo_dir(repo, *path, mkdir=False):
 
 }
 
-fun repoPath(repo: GitRepository, vararg path: String) = path.forEach { repo.gitdir.toString() + it }
+fun repoPath(repo: GitRepository, vararg path: String) = path.forEach { repo.gitdir.toString() + "/" + it }
+
 fun repoFile(repo: GitRepository, vararg path: String, mkdir: Boolean = false) {
-    if (repoDir(repo, *path, mkdir=mkdir)) return repoPath(repo, *path)
+    if (repoDir(repo, *path.sliceArray(0..path.size - 2), mkdir = mkdir)) return repoPath(repo, *path)
 }
 
 fun repoDir(repo: GitRepository, vararg path: String, mkdir: Boolean = false): Boolean {
-    return false
+    val path: File = File(repoPath(repo, *path))
+    if ()
 }
