@@ -4,21 +4,23 @@ fun main(args: Array<String>) {
     if (args.isEmpty())
         fail(helpMessage)
 
+    val slice = args.sliceArray(1..args.size)
+
     when (args[0]) {
-        "add" -> cmdAdd(args)
-        "cat-file" -> cmdCatFile(args)
-        "checkout" -> cmdCheckout(args)
-        "commit" -> cmdCommit(args)
-        "hash-objec" -> cmdHashObject(args)
-        "init" -> cmdInit(args)
-        "log" -> cmdLog(args)
-        "ls-tree" -> cmdLsTree(args)
-        "merge" -> cmdMerge(args)
-        "rebase" -> cmdRebase(args)
-        "rev-parse" -> cmdRevParse(args)
-        "rm" -> cmdRm(args)
-        "show-ref" -> cmdShowRef(args)
-        "tag" -> cmdTag(args)
+        "add" -> cmdAdd(slice)
+        "cat-file" -> cmdCatFile(slice)
+        "checkout" -> cmdCheckout(slice)
+        "commit" -> cmdCommit(slice)
+        "hash-objec" -> cmdHashObject(slice)
+        "init" -> cmdInit(slice)
+        "log" -> cmdLog(slice)
+        "ls-tree" -> cmdLsTree(slice)
+        "merge" -> cmdMerge(slice)
+        "rebase" -> cmdRebase(slice)
+        "rev-parse" -> cmdRevParse(slice)
+        "rm" -> cmdRm(slice)
+        "show-ref" -> cmdShowRef(slice)
+        "tag" -> cmdTag(slice)
         "version" -> print(version)
         else -> print(helpMessage)
     }
@@ -83,10 +85,7 @@ fun cmdAdd(args: Array<String>) {
 
 
 val helpMessage = """
-    usage: kit [--version] [--help] [-C <path>] [-c <name>=<value>]
-               [--exec-path[=<path>]] [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
-               [--kit-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
-               <command> [<args>]
+    usage: kit [--version] [--help]
 
     These are common kit commands used in various situations:
 
