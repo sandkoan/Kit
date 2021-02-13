@@ -120,4 +120,4 @@ val helpMessage = """
        push              Update remote refs along with associated objects
     """.trimIndent()
 
-val version = "0.1.0"
+const val version = "0.1.0"

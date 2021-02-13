@@ -14,7 +14,7 @@ repositories {
 
 dependencies {
 //    implementation("com.github.ajalt.clikt:clikt:3.1.0")
-//    implementation("com.sksamuel.hoplite:hoplite-hocon:1.3.15")
+    implementation("com.sksamuel.hoplite:hoplite-hocon:1.3.15")
     testImplementation(kotlin("test-junit"))
 }
 
