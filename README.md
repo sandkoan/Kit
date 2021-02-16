@@ -1,3 +1,3 @@
 # Kit
 
-A Kotlin implementation of git
+A Kotlin implementation of a VCS similar to git
